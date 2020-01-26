@@ -1,0 +1,33 @@
+
+#container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.gallery {
+    width:180px;
+    height:250px;
+    padding:5px;
+    }
+    video {
+        position:apsolute;
+        left:0px;
+        right:0px;
+        top:0px;
+        bottom:0px;
+        width:100%;
+        
+        }
+        .img_home{
+            width:100px;
+            height:100px;;
+			
+                }
+        #more1{
+            display:none;
+
+        }
+        #more{
+            display:none;
+
+        }

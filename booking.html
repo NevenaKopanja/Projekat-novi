@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Booking</title>
+		<meta charset="utf-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">		 
+		 <script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+		  <link href="css/style.css" rel="stylesheet" type="text/css">
+          </head>
+          
+          <header>
+			<div class="container">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<a class="navbar-brand" href="#" >
+						<img src="images/Resursi_updatelogo.jpg" width="120"></img>
+					</a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
+						aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" >
+					</div>
+					<div>
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="aboutUs.html">About Us</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="destination.html">Destinations</a>
+                            </li>
+                            <li class="nav-item active">
+								<a class="nav-link" href="booking.html">Booking</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="galery.html">Galery</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="blog.html">Blog</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="contact.html">Contact</a>
+							</li>
+				 
+						</ul>
+					</div>
+				</nav>
+			</div>
+        </header>
+        <body>
+			<div>
+				<img src="images/airplane[1].jpg" width="100%" height="350px">
+			</div>
+			
+			<div class="container">
+					<div class="row">
+
+						<div class="col">
+					<table id="table" class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						
+							<th>Tour</th>
+
+								<th>When</th>
+
+								<th>Duration</th>
+
+								<th>Price</th>
+
+								<th>Details</th>
+
+								<th>Reservation </th>
+							</tr>
+						</thead>
+						<tbody> </tbody>
+
+					</table>
+				</div>
+				</div>
+			</div>
+			
+		
+			<div class="modal fade" id="viewDetailsModal" tabindex="-1" role="dialog" aria-labelledby="modalUnosLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title" id="destinationName"></h5>
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					<div class="modal-body">
+					  <img id="destinationImage" src=""  class="img-fluid" alt="Responsive image">
+					  <p id="destinationDescription"></p>
+					</div>
+				  </div>
+				</div>
+			</div>
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+			
+			<script>
+
+				var table = $('#table').DataTable({
+
+					"ajax": {
+		
+						"url": "http://localhost:3000/destination/",
+		
+						"dataSrc": ""
+		
+					},
+		
+					"columns": [
+
+					
+		
+						{ "data": "tour" },
+		
+						{ "data": "when" },
+		
+						{ "data": "duration" },
+		
+						{ "data": "price" },
+
+						{}, {}
+		
+					],
+		
+					"columnDefs": [{
+						"targets": -1,
+						"data": null,
+						"defaultContent": "<button class=\"btn btn-danger\">Make reservation</button>"
+					},
+		
+					{
+						"targets": -2,
+						"data": null,
+						"defaultContent": "<button class=\"btn btn-default\">View details</button>"
+					}],
+		
+					"rowId": "id"
+		
+				});
+		
+				$('#table tbody').on('click', '.btn-default', function () {
+	
+					//var dugme = this;
+		
+					var tableRow = table.row($(this).parents('tr'));
+		
+					var destination = tableRow.data();
+		
+		
+		
+					$('#destinationName').text(destination.tour);
+		
+					$('#destinationImage').attr("src", destination.image);
+		
+					$('#destinationDescription').text(destination.description);
+					jQuery.noConflict();
+		
+					$('#viewDetailsModal').modal('toggle');
+		
+				});
+	
+			</script>
+
+        </body>
+          </html>

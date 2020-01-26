@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title>jsonvezba</title>
+</head>
+<body>
+    <h1>Klikni na dugme da bi ucitao podatke sa sajta</h1>
+    <button onclick="ucitaj()">Ucitaj</button>
+    <p id="fajl"></p>
+    <script>
+    var osoba={"ime":"Marko","prezime":"Kostres","email":"kmarko@yahoo.com"}
+        function ucitaj(){
+            var zahtev=new XMLHttpRequest();
+            zahtev.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200 ){
+                    document.getElementById("fajl").innerHTML=this.responseText;
+
+                }
+            };
+           zahtev.open("GET","http:/localhost:3000/podaci",true);
+            zahtev.send();
+           // zahtev.open("POST","http:/localhost:3000/podaci",true);
+           //zahtev.setRequestHeader('Content-Type','application/json; charset=UTF-8');
+           //zahtev.send(JSON.stringify(osoba));
+        }
+    </script>
+   
+</body>
+</html>
